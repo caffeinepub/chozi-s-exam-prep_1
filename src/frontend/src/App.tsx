@@ -20,6 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { AdminPanel, StudyMaterialsSection } from "./components/StudyMaterials";
 
 // ────────────────────────────────────────────────────────────
 // Types
@@ -133,6 +134,54 @@ const SUBJECTS: SubjectData[] = [
           options: ["Preamble", "Schedule", "Amendment", "Bill of Rights"],
           correct: 3,
         },
+        {
+          question:
+            "The President of Zambia is elected for a term of how many years?",
+          options: ["3 years", "4 years", "6 years", "5 years"],
+          correct: 3,
+        },
+        {
+          question: "Which body is responsible for human rights in Zambia?",
+          options: [
+            "Electoral Commission",
+            "Anti-Corruption Commission",
+            "Zambia Police",
+            "Human Rights Commission",
+          ],
+          correct: 3,
+        },
+        {
+          question: "The Zambian parliament consists of how many houses?",
+          options: ["3", "4", "2", "1"],
+          correct: 2,
+        },
+        {
+          question:
+            "Which article of the Zambian constitution deals with fundamental rights?",
+          options: ["Article 5", "Article 10", "Article 20", "Article 11"],
+          correct: 3,
+        },
+        {
+          question:
+            "The Speaker of the National Assembly in Zambia is elected by?",
+          options: [
+            "The President",
+            "The Cabinet",
+            "The Judiciary",
+            "Members of Parliament",
+          ],
+          correct: 3,
+        },
+        {
+          question: "Zambia's system of government is best described as?",
+          options: [
+            "Parliamentary monarchy",
+            "Absolute monarchy",
+            "Military dictatorship",
+            "Constitutional republic",
+          ],
+          correct: 3,
+        },
       ],
     },
   },
@@ -194,6 +243,43 @@ const SUBJECTS: SubjectData[] = [
             "Cell to cell",
             "High to low solute concentration",
           ],
+          correct: 3,
+        },
+        {
+          question:
+            "DNA replication occurs during which phase of the cell cycle?",
+          options: ["G1 phase", "M phase", "G2 phase", "S phase"],
+          correct: 3,
+        },
+        {
+          question: "Which hormone regulates blood glucose levels?",
+          options: ["Adrenaline", "Oestrogen", "Thyroxine", "Insulin"],
+          correct: 3,
+        },
+        {
+          question:
+            "The process by which organisms pass traits to offspring is called?",
+          options: ["Evolution", "Mutation", "Adaptation", "Heredity"],
+          correct: 3,
+        },
+        {
+          question: "What is the product of aerobic respiration?",
+          options: [
+            "Lactic acid only",
+            "Ethanol and CO₂",
+            "Glucose and water",
+            "CO₂, water, and ATP",
+          ],
+          correct: 3,
+        },
+        {
+          question: "Transpiration in plants mainly occurs through the?",
+          options: ["Roots", "Stem", "Flowers", "Stomata"],
+          correct: 3,
+        },
+        {
+          question: "Which blood type is the universal donor?",
+          options: ["AB", "B", "A", "O"],
           correct: 3,
         },
       ],
@@ -259,6 +345,53 @@ const SUBJECTS: SubjectData[] = [
           ],
           correct: 3,
         },
+        {
+          question: "The unit of electric charge is the?",
+          options: ["Volt", "Ampere", "Watt", "Coulomb"],
+          correct: 3,
+        },
+        {
+          question: "What is the molecular formula of ethanol?",
+          options: ["CH₄", "C₂H₄", "C₃H₈", "C₂H₅OH"],
+          correct: 3,
+        },
+        {
+          question:
+            "Which law states that pressure and volume are inversely proportional at constant temperature?",
+          options: [
+            "Charles' Law",
+            "Newton's Law",
+            "Gay-Lussac's Law",
+            "Boyle's Law",
+          ],
+          correct: 3,
+        },
+        {
+          question:
+            "The half-life of a radioactive substance is the time taken for?",
+          options: [
+            "Full decay",
+            "Double the mass",
+            "Triple activity",
+            "Half the nuclei to decay",
+          ],
+          correct: 3,
+        },
+        {
+          question: "Which type of bond involves sharing of electrons?",
+          options: [
+            "Ionic bond",
+            "Metallic bond",
+            "Hydrogen bond",
+            "Covalent bond",
+          ],
+          correct: 3,
+        },
+        {
+          question: "The SI unit of power is the?",
+          options: ["Joule", "Newton", "Volt", "Watt"],
+          correct: 3,
+        },
       ],
     },
   },
@@ -311,6 +444,36 @@ const SUBJECTS: SubjectData[] = [
           question: "Expand (x+2)²:",
           options: ["x²+4", "x²+2x+4", "x²+4x+2", "x²+4x+4"],
           correct: 3,
+        },
+        {
+          question: "Integrate ∫2x dx:",
+          options: ["2", "x²+C", "2x+C", "x+C"],
+          correct: 1,
+        },
+        {
+          question: "What is the sum of the interior angles of a hexagon?",
+          options: ["360°", "540°", "900°", "720°"],
+          correct: 3,
+        },
+        {
+          question: "Solve: 2x² - 8 = 0. x = ?",
+          options: ["±1", "±3", "±4", "±2"],
+          correct: 3,
+        },
+        {
+          question: "The nth term of an arithmetic sequence is given by:",
+          options: ["a + nd", "a - nd", "a × nd", "a + (n-1)d"],
+          correct: 3,
+        },
+        {
+          question: "If f(x) = x² + 3, what is f(4)?",
+          options: ["13", "19", "7", "16"],
+          correct: 1,
+        },
+        {
+          question: "A circle has radius 7 cm. Its area is approximately?",
+          options: ["44 cm²", "22 cm²", "154 cm²", "154 cm"],
+          correct: 2,
         },
       ],
     },
@@ -380,6 +543,56 @@ const SUBJECTS: SubjectData[] = [
             "Constitutional change",
             "Disarming UNIP youth brigade",
           ],
+          correct: 3,
+        },
+        {
+          question:
+            "Which conference formally divided Africa among European powers?",
+          options: [
+            "Paris Peace Conference",
+            "Yalta Conference",
+            "Versailles Conference",
+            "Berlin Conference of 1884-85",
+          ],
+          correct: 3,
+        },
+        {
+          question:
+            "The Movement for Multi-party Democracy (MMD) was founded in which year?",
+          options: ["1988", "1992", "1995", "1990"],
+          correct: 3,
+        },
+        {
+          question:
+            "Who was the first elected president of Zambia after multiparty democracy?",
+          options: [
+            "Levy Mwanawasa",
+            "Edgar Lungu",
+            "Kenneth Kaunda",
+            "Frederick Chiluba",
+          ],
+          correct: 3,
+        },
+        {
+          question:
+            "The Litunga is the traditional ruler of which Zambian kingdom?",
+          options: [
+            "Bemba Kingdom",
+            "Ngoni Kingdom",
+            "Tonga Kingdom",
+            "Barotse Kingdom",
+          ],
+          correct: 3,
+        },
+        {
+          question: "Which year did Zambia join the Commonwealth of Nations?",
+          options: ["1962", "1966", "1968", "1964"],
+          correct: 3,
+        },
+        {
+          question:
+            "The policy of apartheid was practised in which neighbouring country?",
+          options: ["Zimbabwe", "Angola", "Mozambique", "South Africa"],
           correct: 3,
         },
       ],
@@ -1060,6 +1273,57 @@ function ContinueLearningModal({
 }
 
 // ────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────
+// Resources Modal
+// ────────────────────────────────────────────────────────────
+
+interface ResourcesModalProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+function ResourcesModal({ open, onClose }: ResourcesModalProps) {
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent className="card-glass border-border max-w-lg mx-auto max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-gold text-lg font-bold flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-purple-bright" />
+            Resources
+          </DialogTitle>
+        </DialogHeader>
+        <p className="text-xs text-lavender mb-4">
+          Official ECZ study materials and past exam papers.
+        </p>
+
+        <a
+          href="https://drive.google.com/drive/folders/1f2GggsLxWyVagG-pNG3bjdUCNxm2T0ur"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 w-full p-4 rounded-xl bg-purple/30 border border-purple-mid hover:bg-purple/50 hover:border-purple-bright transition-colors mb-4"
+        >
+          <span className="text-2xl">📁</span>
+          <div>
+            <p className="text-sm font-bold text-gold">
+              ECZ Study Materials Folder
+            </p>
+            <p className="text-xs text-lavender">Open Google Drive folder</p>
+          </div>
+          <span className="ml-auto text-lavender text-xs">↗</span>
+        </a>
+        <button
+          type="button"
+          onClick={onClose}
+          className="w-full mt-4 py-2.5 rounded-xl text-sm font-semibold text-foreground border border-border hover:border-purple-light transition-colors"
+        >
+          Close
+        </button>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 const SOCIAL_ICONS = [
   { name: "facebook", Icon: Facebook },
   { name: "twitter", Icon: Twitter },
@@ -1074,12 +1338,13 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeQuiz, setActiveQuiz] = useState<SubjectData | null>(null);
   const [scores, setScores] = useState<Record<string, number>>(loadScores);
-  const [attempts, setAttempts] = useState<QuizAttempt[]>(loadAttempts);
   const [showConfetti, setShowConfetti] = useState(false);
   const [animKey, setAnimKey] = useState(0);
   const [selectedSubject, setSelectedSubject] = useState<SubjectData | null>(
     null,
   );
+  const [showResources, setShowResources] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
 
   const handleGradeChange = (g: Grade) => {
     setGrade(g);
@@ -1102,7 +1367,6 @@ export default function App() {
     };
     saveAttempt(attempt);
     setScores(loadScores());
-    setAttempts(loadAttempts());
     if (pct >= 80) setShowConfetti(true);
   };
 
@@ -1145,6 +1409,11 @@ export default function App() {
                   key={link}
                   className="px-3 py-1.5 text-sm text-lavender hover:text-foreground hover:bg-purple-mid/20 rounded-lg transition-colors"
                   data-ocid={`nav.${link.toLowerCase().replace(" ", "_")}.link`}
+                  onClick={
+                    link === "Resources"
+                      ? () => setShowResources(true)
+                      : undefined
+                  }
                 >
                   {link}
                 </button>
@@ -1152,6 +1421,14 @@ export default function App() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowAdmin(true)}
+                className="px-3 py-1.5 text-sm text-gold border border-gold/40 hover:bg-gold/10 rounded-lg transition-colors font-semibold"
+                data-ocid="nav.admin.button"
+              >
+                🔐 Admin
+              </button>
               <Button
                 className="bg-gold text-purple-deep hover:bg-gold-light font-bold text-sm px-4 py-2"
                 data-ocid="nav.start_learning.button"
@@ -1182,12 +1459,26 @@ export default function App() {
                 type="button"
                 key={link}
                 className="block w-full text-left px-3 py-2 text-sm text-lavender hover:text-foreground hover:bg-purple-mid/20 rounded-lg transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (link === "Resources") setShowResources(true);
+                }}
                 data-ocid={`nav.mobile.${link.toLowerCase().replace(" ", "_")}.link`}
               >
                 {link}
               </button>
             ))}
+            <button
+              type="button"
+              className="block w-full text-left px-3 py-2 text-sm text-gold hover:text-gold-light hover:bg-gold/10 rounded-lg transition-colors font-semibold"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setShowAdmin(true);
+              }}
+              data-ocid="nav.mobile.admin.button"
+            >
+              🔐 Admin
+            </button>
             <Button
               className="w-full mt-2 bg-gold text-purple-deep hover:bg-gold-light font-bold text-sm"
               data-ocid="nav.mobile.start_learning.button"
@@ -1423,89 +1714,8 @@ export default function App() {
             ))}
           </div>
         </section>
-
-        {/* Recent Attempts */}
-        {attempts.length > 0 ? (
-          <section className="mb-10">
-            <div className="flex items-center gap-2 mb-5">
-              <div className="h-px flex-1 bg-border" />
-              <span className="text-xs uppercase tracking-widest text-gold font-bold px-3">
-                Recent Quiz Attempts
-              </span>
-              <div className="h-px flex-1 bg-border" />
-            </div>
-            <div
-              className="card-glass rounded-2xl overflow-hidden"
-              data-ocid="attempts.table"
-            >
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="px-4 py-3 text-left text-xs uppercase tracking-wider text-lavender font-semibold">
-                        Subject
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs uppercase tracking-wider text-lavender font-semibold">
-                        Grade
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs uppercase tracking-wider text-lavender font-semibold">
-                        Score
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs uppercase tracking-wider text-lavender font-semibold">
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {attempts.slice(0, 6).map((a, rowIdx) => (
-                      <tr
-                        key={`${a.subject}-${a.grade}-${a.date}-${rowIdx}`}
-                        className="border-b border-border/50 hover:bg-purple-mid/10 transition-colors"
-                        data-ocid={`attempts.item.${rowIdx + 1}`}
-                      >
-                        <td className="px-4 py-3 font-medium text-foreground">
-                          {a.subject}
-                        </td>
-                        <td className="px-4 py-3 text-lavender">
-                          Grade {a.grade}
-                        </td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`font-bold ${
-                              a.score >= 80
-                                ? "text-emerald-400"
-                                : a.score >= 50
-                                  ? "text-gold"
-                                  : "text-red-400"
-                            }`}
-                          >
-                            {a.score}%
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-lavender text-xs">
-                          {a.date}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-        ) : (
-          <div
-            className="card-glass rounded-2xl p-8 text-center mb-10"
-            data-ocid="attempts.empty_state"
-          >
-            <div className="text-4xl mb-3">📝</div>
-            <h3 className="text-base font-semibold text-foreground mb-1">
-              No quizzes attempted yet
-            </h3>
-            <p className="text-sm text-lavender">
-              Take your first quiz above to track your progress!
-            </p>
-          </div>
-        )}
+        {/* Study Materials */}
+        <StudyMaterialsSection grade={grade} />
       </main>
 
       {/* Footer */}
@@ -1525,16 +1735,36 @@ export default function App() {
                 Built for Zambian Students · ECZ Exam Success
               </p>
             </div>
-            {[
-              {
-                title: "Resources",
-                links: [
-                  "Study Guides",
+            {/* Resources column — link to resources modal */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-gold font-bold mb-3">
+                Resources
+              </h4>
+              <ul className="space-y-2">
+                {[
                   "Past Papers",
-                  "Model Answers",
-                  "Video Lessons",
-                ],
-              },
+                  "Study Materials",
+                  "Textbooks",
+                  "Study Guides",
+                  "ECZ Syllabus",
+                ].map((item) => (
+                  <li key={item}>
+                    <button
+                      type="button"
+                      className="text-xs text-lavender hover:text-foreground transition-colors"
+                      onClick={
+                        item === "Past Papers"
+                          ? () => setShowResources(true)
+                          : undefined
+                      }
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {[
               {
                 title: "Platform",
                 links: [
@@ -1569,17 +1799,27 @@ export default function App() {
             ))}
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border">
-            <p className="text-xs text-lavender">
-              © {new Date().getFullYear()}.{" "}
-              <a
-                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gold transition-colors"
+            <div className="flex items-center gap-4">
+              <p className="text-xs text-lavender">
+                © {new Date().getFullYear()}.{" "}
+                <a
+                  href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold transition-colors"
+                >
+                  Built with ❤️ using caffeine.ai
+                </a>
+              </p>
+              <button
+                type="button"
+                onClick={() => setShowAdmin(true)}
+                className="text-[10px] text-purple-mid hover:text-lavender transition-colors"
+                data-ocid="admin.open_modal_button"
               >
-                Built with ❤️ using caffeine.ai
-              </a>
-            </p>
+                Admin
+              </button>
+            </div>
             <div className="flex gap-3">
               {SOCIAL_ICONS.map(({ name, Icon }) => (
                 <a
@@ -1597,6 +1837,15 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Admin Panel */}
+      <AdminPanel open={showAdmin} onClose={() => setShowAdmin(false)} />
+
+      {/* Resources Modal */}
+      <ResourcesModal
+        open={showResources}
+        onClose={() => setShowResources(false)}
+      />
 
       {/* Quiz Modal */}
       {activeQuiz && (

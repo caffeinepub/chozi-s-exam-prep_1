@@ -395,6 +395,45 @@ const RING_COLORS: Record<string, { from: string; to: string }> = {
   history: { from: "#EC4899", to: "#F472B6" },
 };
 
+// ────────────────────────────────────────────────────────────
+// Textbook Data
+// ────────────────────────────────────────────────────────────
+interface Textbook {
+  title: string;
+  cover: string;
+}
+
+const TEXTBOOKS: Record<string, Record<string, Textbook>> = {
+  "9": {
+    biology: {
+      title: "Longman Biology for Zambia Grade 9",
+      cover: "/assets/generated/textbook-biology-g9.dim_200x280.jpg",
+    },
+    science: {
+      title: "Longman Integrated Science for Zambia Grade 9",
+      cover: "/assets/generated/textbook-science-g9.dim_200x280.jpg",
+    },
+    civic: {
+      title: "Longman Civic Education for Zambia Grade 9",
+      cover: "/assets/generated/textbook-civic-g9.dim_200x280.jpg",
+    },
+  },
+  "12": {
+    biology: {
+      title: "Longman Biology for Zambia Grade 12",
+      cover: "/assets/generated/textbook-biology-g12.dim_200x280.jpg",
+    },
+    physics: {
+      title: "Longman Physics for Zambia Grade 12",
+      cover: "/assets/generated/textbook-physics-g12.dim_200x280.jpg",
+    },
+    civic: {
+      title: "Longman Civic Education for Zambia Grade 12",
+      cover: "/assets/generated/textbook-civic-g12.dim_200x280.jpg",
+    },
+  },
+};
+
 const CONFETTI_COLORS = [
   "#7C3AED",
   "#A855F7",
@@ -898,6 +937,271 @@ function QuizCard({ subject, grade, bestScore, onStart }: QuizCardProps) {
 // ────────────────────────────────────────────────────────────
 // Social icons config
 // ────────────────────────────────────────────────────────────
+// Continue Learning Modal
+// ────────────────────────────────────────────────────────────
+interface ContinueLearningModalProps {
+  subject: SubjectData;
+  grade: Grade;
+  open: boolean;
+  onClose: () => void;
+}
+
+function ContinueLearningModal({
+  subject,
+  grade,
+  open,
+  onClose,
+}: ContinueLearningModalProps) {
+  const textbook = TEXTBOOKS[grade]?.[subject.id];
+  const pct = grade === "9" ? subject.g9Percent : subject.g12Percent;
+
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent className="card-glass border-border max-w-md mx-auto max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-gold text-lg font-bold flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-purple-bright" />
+            Continue Learning
+          </DialogTitle>
+        </DialogHeader>
+        <div className="mt-1 space-y-6">
+          {/* Subject header */}
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-border">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+              style={{ background: subject.color }}
+            >
+              {subject.name.charAt(0)}
+            </div>
+            <div>
+              <p className="text-foreground font-semibold text-sm">
+                {subject.name}
+              </p>
+              <p className="text-muted-foreground text-xs">
+                Grade {grade} &middot; {pct}% mastered
+              </p>
+            </div>
+          </div>
+
+          {/* Study Tips */}
+          <div>
+            <h4 className="text-xs uppercase tracking-widest text-gold font-bold mb-3">
+              Study Tips
+            </h4>
+            <ul className="space-y-2">
+              {[
+                "Review your weakest topics first",
+                "Practice ECZ past paper questions daily",
+                "Create summary notes for each chapter",
+              ].map((tip) => (
+                <li
+                  key={tip}
+                  className="flex items-start gap-2 text-xs text-muted-foreground"
+                >
+                  <ChevronRight className="w-3.5 h-3.5 text-purple-bright mt-0.5 flex-shrink-0" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Textbooks */}
+          {textbook && (
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-gold font-bold mb-3">
+                📚 Official ECZ Textbook
+              </h4>
+              <div className="flex gap-4 items-start p-3 rounded-xl bg-white/5 border border-border hover:border-purple-light transition-colors">
+                <img
+                  src={textbook.cover}
+                  alt={textbook.title}
+                  className="w-20 rounded-lg shadow-lg flex-shrink-0 border border-white/10"
+                  style={{ aspectRatio: "200/280", objectFit: "cover" }}
+                />
+                <div className="flex flex-col justify-center gap-2">
+                  <p className="text-foreground text-sm font-semibold leading-snug">
+                    {textbook.title}
+                  </p>
+                  <Badge className="w-fit text-[10px] bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                    ✓ ECZ Approved
+                  </Badge>
+                  <p className="text-muted-foreground text-xs">
+                    Official curriculum textbook for Grade {grade}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!textbook && (
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-gold font-bold mb-3">
+                📚 Official ECZ Textbook
+              </h4>
+              <div className="p-3 rounded-xl bg-white/5 border border-border text-center">
+                <p className="text-muted-foreground text-xs">
+                  Textbook information coming soon for this subject.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full py-2.5 rounded-xl text-sm font-semibold text-foreground border border-border hover:border-purple-light transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────
+// Resources Modal
+// ────────────────────────────────────────────────────────────
+const PAST_PAPERS: Record<
+  Grade,
+  { subject: string; links: { year: string; url: string }[] }[]
+> = {
+  "9": [
+    {
+      subject: "Mathematics",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Biology",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Zambian Civic Education",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Integrated Science",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "History",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+  ],
+  "12": [
+    {
+      subject: "Mathematics",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Biology",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Zambian Civic Education",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "Physics",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+    {
+      subject: "History",
+      links: [
+        { year: "2023", url: "https://drive.google.com" },
+        { year: "2022", url: "https://drive.google.com" },
+      ],
+    },
+  ],
+};
+
+interface ResourcesModalProps {
+  open: boolean;
+  onClose: () => void;
+  grade: Grade;
+}
+
+function ResourcesModal({ open, onClose, grade }: ResourcesModalProps) {
+  const subjects = PAST_PAPERS[grade];
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent className="card-glass border-border max-w-lg mx-auto max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-gold text-lg font-bold flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-purple-bright" />
+            Resources — Grade {grade} Past Papers
+          </DialogTitle>
+        </DialogHeader>
+        <p className="text-xs text-lavender mb-4">
+          Official ECZ past exam papers. Replace the placeholder links with your
+          actual Google Drive URLs.
+        </p>
+        <div className="space-y-3">
+          {subjects.map((item) => (
+            <div
+              key={item.subject}
+              className="p-4 rounded-xl bg-white/5 border border-border hover:border-purple-light transition-colors"
+            >
+              <p className="text-sm font-semibold text-foreground mb-3">
+                {item.subject}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {item.links.map((link) => (
+                  <a
+                    key={link.year}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple/30 border border-purple-mid hover:bg-purple/50 hover:border-purple-bright transition-colors text-xs font-semibold text-foreground"
+                  >
+                    📄 {link.year} Paper
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="w-full mt-4 py-2.5 rounded-xl text-sm font-semibold text-foreground border border-border hover:border-purple-light transition-colors"
+        >
+          Close
+        </button>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 const SOCIAL_ICONS = [
   { name: "facebook", Icon: Facebook },
   { name: "twitter", Icon: Twitter },
@@ -915,6 +1219,10 @@ export default function App() {
   const [attempts, setAttempts] = useState<QuizAttempt[]>(loadAttempts);
   const [showConfetti, setShowConfetti] = useState(false);
   const [animKey, setAnimKey] = useState(0);
+  const [selectedSubject, setSelectedSubject] = useState<SubjectData | null>(
+    null,
+  );
+  const [showResources, setShowResources] = useState(false);
 
   const handleGradeChange = (g: Grade) => {
     setGrade(g);
@@ -980,6 +1288,11 @@ export default function App() {
                   key={link}
                   className="px-3 py-1.5 text-sm text-lavender hover:text-foreground hover:bg-purple-mid/20 rounded-lg transition-colors"
                   data-ocid={`nav.${link.toLowerCase().replace(" ", "_")}.link`}
+                  onClick={
+                    link === "Resources"
+                      ? () => setShowResources(true)
+                      : undefined
+                  }
                 >
                   {link}
                 </button>
@@ -1017,7 +1330,10 @@ export default function App() {
                 type="button"
                 key={link}
                 className="block w-full text-left px-3 py-2 text-sm text-lavender hover:text-foreground hover:bg-purple-mid/20 rounded-lg transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (link === "Resources") setShowResources(true);
+                }}
                 data-ocid={`nav.mobile.${link.toLowerCase().replace(" ", "_")}.link`}
               >
                 {link}
@@ -1061,6 +1377,11 @@ export default function App() {
                   variant="outline"
                   className="border-purple-mid text-foreground hover:bg-purple-mid/20 font-semibold px-6 py-3 text-base"
                   data-ocid="hero.view_subjects.secondary_button"
+                  onClick={() => {
+                    const el = document.getElementById("subjects-section");
+                    if (el)
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                 >
                   View Subjects
                 </Button>
@@ -1168,7 +1489,7 @@ export default function App() {
         </section>
 
         {/* Progress Trackers */}
-        <section className="mb-10">
+        <section id="subjects-section" className="mb-10">
           <div className="flex items-center gap-2 mb-6">
             <div className="h-px flex-1 bg-border" />
             <span className="text-xs uppercase tracking-widest text-gold font-bold px-3">
@@ -1211,6 +1532,7 @@ export default function App() {
                     type="button"
                     className="mt-3 text-[11px] text-purple-bright hover:text-gold font-semibold transition-colors group-hover:underline"
                     data-ocid={`progress.${subject.id}.button`}
+                    onClick={() => setSelectedSubject(subject)}
                   >
                     Continue Learning →
                   </button>
@@ -1354,16 +1676,35 @@ export default function App() {
                 Built for Zambian Students · ECZ Exam Success
               </p>
             </div>
-            {[
-              {
-                title: "Resources",
-                links: [
-                  "Study Guides",
+            {/* Resources column — link to resources modal */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-gold font-bold mb-3">
+                Resources
+              </h4>
+              <ul className="space-y-2">
+                {[
                   "Past Papers",
-                  "Model Answers",
-                  "Video Lessons",
-                ],
-              },
+                  "Textbooks",
+                  "Study Guides",
+                  "ECZ Syllabus",
+                ].map((item) => (
+                  <li key={item}>
+                    <button
+                      type="button"
+                      className="text-xs text-lavender hover:text-foreground transition-colors"
+                      onClick={
+                        item === "Past Papers"
+                          ? () => setShowResources(true)
+                          : undefined
+                      }
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {[
               {
                 title: "Platform",
                 links: [
@@ -1427,6 +1768,13 @@ export default function App() {
         </div>
       </footer>
 
+      {/* Resources Modal */}
+      <ResourcesModal
+        open={showResources}
+        onClose={() => setShowResources(false)}
+        grade={grade}
+      />
+
       {/* Quiz Modal */}
       {activeQuiz && (
         <QuizModal
@@ -1435,6 +1783,16 @@ export default function App() {
           open={!!activeQuiz}
           onClose={() => setActiveQuiz(null)}
           onComplete={handleQuizComplete}
+        />
+      )}
+
+      {/* Continue Learning Modal */}
+      {selectedSubject && (
+        <ContinueLearningModal
+          subject={selectedSubject}
+          grade={grade}
+          open={!!selectedSubject}
+          onClose={() => setSelectedSubject(null)}
         />
       )}
     </div>
